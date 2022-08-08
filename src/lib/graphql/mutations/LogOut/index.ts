@@ -1,6 +1,6 @@
 import { gql } from "apollo-boost";
 
-export const LogOut = gql`
+export const LOG_OUT = gql`
   mutation LogOut {
     logOut {
       id
