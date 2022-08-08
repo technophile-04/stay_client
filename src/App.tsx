@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import { Home, Host, Listing, Listings, NotFound, User } from "./sections";
+import { Viewer } from "./lib/types";
+import { Home, Host, Listing, Listings, LogIn, NotFound, User } from "./sections";
+
+const initialViewer: Viewer = {
+  id: null,
+  token: null,
+  avatar: null,
+  hasWallet: null,
+  didRequest: false,
+};
 
 const App = () => {
+  const [viewer, setViewer] = useState<Viewer>(initialViewer);
+  console.log(viewer);
+
   return (
     <Routes>
       <Route path="/" element={<Home />} />
@@ -11,6 +23,7 @@ const App = () => {
       <Route path="/listings" element={<Listings />} />
       <Route path="/listings/:location" element={<Listings />} />
       <Route path="/user/:id" element={<User />} />
+      <Route path="/login" element={<LogIn setViewer={setViewer} />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

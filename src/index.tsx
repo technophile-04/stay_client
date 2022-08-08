@@ -1,3 +1,4 @@
+import { Layout } from "antd";
 import ApolloClient from "apollo-boost";
 import React from "react";
 import { ApolloProvider } from "react-apollo";
@@ -15,7 +16,9 @@ const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
 root.render(
   <BrowserRouter>
     <ApolloProvider client={client}>
-      <App />
+      <Layout id="app">
+        <App />
+      </Layout>
     </ApolloProvider>
   </BrowserRouter>
 );
