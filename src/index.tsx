@@ -8,6 +8,7 @@ import "./styles/index.css";
 
 const client = new ApolloClient({
   uri: "http://localhost:9000/api",
+  credentials: "include",
 });
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
