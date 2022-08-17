@@ -49,6 +49,13 @@ export const LogIn = ({ setViewer }: Props) => {
     onCompleted: (data) => {
       if (data && data.logIn) {
         setViewer(data.logIn);
+        if (data.logIn.token) {
+          sessionStorage.setItem("token", data.logIn.token);
+          displaySuccessNotification("You have successfully logged in!");
+        } else {
+          sessionStorage.removeItem("token");
+          displayErrorMessage("Error logging In");
+        }
       }
     },
   });
@@ -60,7 +67,6 @@ export const LogIn = ({ setViewer }: Props) => {
     const code = new URL(window.location.href).searchParams.get("code");
     if (code) {
       logInRef.current({ variables: { input: { code } } });
-      displaySuccessNotification("You have successfully logged in!");
     }
   }, []);
 

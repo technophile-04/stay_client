@@ -9,6 +9,14 @@ import "./styles/index.css";
 const client = new ApolloClient({
   uri: "http://localhost:9000/api",
   credentials: "include",
+  request: async (operation) => {
+    const token = sessionStorage.getItem("token");
+    operation.setContext({
+      headers: {
+        "X-CSRF-TOKEN": token || "",
+      },
+    });
+  },
 });
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
